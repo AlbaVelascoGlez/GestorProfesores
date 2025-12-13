@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "a0ab2774-826f-4efc-94a6-acd54b5c5cb6",
+		"name": "Gestor Docentes API",
+		"description": "Colección completa de endpoints para el sistema de Gestión de Docentes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24813499"
+	},
+	"item": [
+		{
+			"name": "Docentes",
+			"item": [
+				{
+					"name": "Obtener docente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/docentes/1",
+						"description": "Obtener un docente específico por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener docentes ordenados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/docentes/ordenados",
+						"description": "Obtener todos los docentes ordenados por apellidos (ascendente)"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener docentes por departamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/docentes/departamento/Informática y Comunicaciones",
+						"description": "Obtener todos los docentes de un departamento específico por nombre"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints relacionados con la gestión de docentes"
+		},
+		{
+			"name": "Departamentos",
+			"item": [
+				{
+					"name": "Contar profesores por código departamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/departamentos/contar/IFC",
+						"description": "Obtener el número de profesores de un departamento por código"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints relacionados con departamentos"
+		},
+		{
+			"name": "Asuntos Propios",
+			"item": [
+				{
+					"name": "UC2 - Solicitar día propio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/asuntospropios/solicitar?docenteId=1&fecha=2025-12-20&descripcion=Asunto personal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"asuntospropios",
+								"solicitar"
+							],
+							"query": [
+								{
+									"key": "docenteId",
+									"value": "1",
+									"description": "ID del docente que solicita"
+								},
+								{
+									"key": "fecha",
+									"value": "2025-12-20",
+									"description": "Fecha solicitada (formato: YYYY-MM-DD)"
+								},
+								{
+									"key": "descripcion",
+									"value": "Asunto personal",
+									"description": "Descripción opcional de la solicitud"
+								}
+							]
+						},
+						"description": "UC2: Solicitar día propio. Almacena día propio en estado pendiente_validar con validaciones básicas."
+					},
+					"response": []
+				},
+				{
+					"name": "UC5 - Validar día propio",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/asuntospropios/validar/1?aceptado=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"asuntospropios",
+								"validar",
+								"1"
+							],
+							"query": [
+								{
+									"key": "aceptado",
+									"value": "true",
+									"description": "true para aprobar, false para denegar"
+								}
+							]
+						},
+						"description": "UC5: Validar días asuntos propios. Confirma o deniega día solicitado."
+					},
+					"response": []
+				},
+				{
+					"name": "UC6 - Consultar días propios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/asuntospropios/consultar/1",
+						"description": "UC6: Consultar días propios. Devuelve el listado de días propios aceptados/rechazados de un docente."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener días pendientes de disfrutar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/asuntospropios/pendientes/1",
+						"description": "Obtener días de asuntos propios pendientes de disfrutar (validados y fecha >= hoy)"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener docente con más días disfrutados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/asuntospropios/docente-mas-dias",
+						"description": "Obtener el docente que más días propios ha disfrutado (validado y fecha < hoy)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints relacionados con la gestión de asuntos propios"
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
